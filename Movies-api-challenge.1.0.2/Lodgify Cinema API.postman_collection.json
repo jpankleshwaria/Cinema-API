@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "d71d8d9e-d953-4ede-a402-2c2234b82c98",
+		"name": "Lodgify Cinema API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10462797",
+		"_collection_link": "https://tmi-india.postman.co/workspace/TMI~8c6c52e1-47c2-42dc-86eb-ac5a2f68a9a9/collection/10462797-d71d8d9e-d953-4ede-a402-2c2234b82c98?action=share&source=collection_link&creator=10462797"
+	},
+	"item": [
+		{
+			"name": "Create showTimes(Audi-1)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Apikey",
+						"value": "68e5fbda-9ec9-4858-97b2-4a8349764c63",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"movieTitle\": \"Inception\",\r\n  \"sessionDate\": \"2024-02-27T12:46:11.631Z\",\r\n  \"auditoriumId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:32770/v1/showTimes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"v1",
+						"showTimes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create showTimes(Audi-2)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Apikey",
+						"value": "68e5fbda-9ec9-4858-97b2-4a8349764c63",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"movieTitle\": \"Inception\",\r\n  \"sessionDate\": \"2024-02-25T12:46:11.631Z\",\r\n  \"auditoriumId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:32770/v1/showTimes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"v1",
+						"showTimes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reserve Seats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.globals.set(\"reservationId\", jsonData.reservationId);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Apikey",
+						"value": "68e5fbda-9ec9-4858-97b2-4a8349764c63",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"showTimeId\" : 1,\r\n  \"seats\": [\r\n    {\r\n      \"row\": 1,\r\n      \"seatNumber\": 2\r\n    },\r\n    {\r\n      \"row\": 1,\r\n      \"seatNumber\": 3\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:32770/v1/Reservation/reserve-seats",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"v1",
+						"Reservation",
+						"reserve-seats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm Reserve Seats",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Apikey",
+						"value": "68e5fbda-9ec9-4858-97b2-4a8349764c63",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"reservationId\": \"{{reservationId}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:32770/v1/Reservation/confirm-reservation",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"v1",
+						"Reservation",
+						"confirm-reservation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Auditorium",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Apikey",
+						"value": "68e5fbda-9ec9-4858-97b2-4a8349764c63",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:32770/v1/auditorium/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"v1",
+						"auditorium",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
